@@ -3,7 +3,7 @@ classdef assesment < Turbine
     %   Detailed explanation goes here
 
     properties
-        Property1
+        
     end
 
     methods
@@ -17,8 +17,17 @@ classdef assesment < Turbine
                 optipitch
 
             end
-
             obj = obj@Turbine(turbineName, powerDesign, rotorSpeedDesign, optipitch);
+        end
+
+        function plot_optipitch(obj)
+            figure
+            plot(obj.optipitch(1,:), obj.optipitch(2,:), '-ob', LineWidth=3);
+            legend('Optipitch');
+            xlabel('Power(kW)');
+            ylabel('Pitch angle (deg)');
+            title(['Optipitch ', obj.turbineName])
+
 
         end
 

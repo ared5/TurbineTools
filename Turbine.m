@@ -2,10 +2,15 @@ classdef Turbine
     %TURBINE Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        tubineName
+    properties (Access = private)
+        
         powerDesign
-        rotorSpeedDesign
+        rotorSpeedDesign   
+        
+    end
+
+    properties (Access = public)
+        turbineName
         optipitch
 
     end
@@ -19,10 +24,10 @@ classdef Turbine
                 turbineName (1, :) char {mustBeTextScalar} = 'NoName'
                 powerDesign (1, :) double {mustBeNumeric} = 0
                 rotorSpeedDesign (1, :) double {mustBeNumeric} = 0
-                optipitch (1, 5) double {mustBeVector} = [0 0 0 0 0]
+                optipitch (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]
             end
 
-            obj.tubineName = turbineName;
+            obj.turbineName = turbineName;
             obj.powerDesign = powerDesign;
             obj.rotorSpeedDesign = rotorSpeedDesign;
             obj.optipitch = optipitch;
