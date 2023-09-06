@@ -20,15 +20,19 @@ classdef assesment < Turbine
             obj = obj@Turbine(turbineName, powerDesign, rotorSpeedDesign, optipitch);
         end
 
-        function plot_optipitch(obj)
+        function plot_optipitch(obj, optipit, turbineID)
+            arguments
+                obj
+                optipit (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]
+                turbineID (1, :) char {mustBeTextScalar} = 'NoName'
+            end
+            
             figure
-            plot(obj.optipitch(1,:), obj.optipitch(2,:), '-ob', LineWidth=3);
+            plot(optipit(1,:), optipit(2,:), '-ob', LineWidth=3);
             legend('Optipitch');
             xlabel('Power(kW)');
             ylabel('Pitch angle (deg)');
-            title(['Optipitch ', obj.turbineName])
-
-
+            title(['Optipitch ', turbineID])
         end
 
     end

@@ -3,15 +3,15 @@ classdef Turbine
     %   Detailed explanation goes here
     
     properties (Access = private)
-        
+        turbineName
         powerDesign
         rotorSpeedDesign   
-        
+        optipitch
     end
 
     properties (Access = public)
-        turbineName
-        optipitch
+        
+        
 
     end
     
@@ -32,6 +32,14 @@ classdef Turbine
             obj.rotorSpeedDesign = rotorSpeedDesign;
             obj.optipitch = optipitch;
             
+        end
+
+        function optipit = get_optipitch(obj)
+            optipit = obj.optipitch;
+        end
+
+        function turbID = get_turbineID(obj)
+            turbID = obj.turbineName;
         end
     end
 end
