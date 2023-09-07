@@ -1,18 +1,16 @@
-classdef Turbine
+classdef Turbine 
     %TURBINE Summary of this class goes here
     %   Detailed explanation goes here
     
     properties (Access = private)
-        
+        turbineName 
         powerDesign
-        rotorSpeedDesign   
-        
+        rotorSpeedDesign 
+        optipitch             
     end
 
     properties (Access = public)
-        turbineName
-        optipitch
-
+        
     end
     
     methods
@@ -30,9 +28,21 @@ classdef Turbine
             obj.turbineName = turbineName;
             obj.powerDesign = powerDesign;
             obj.rotorSpeedDesign = rotorSpeedDesign;
-            obj.optipitch = optipitch;
-            
+            obj.optipitch = optipitch;            
         end
+
+        function optipit = get_optipitch(obj)
+            optipit = obj.optipitch;
+        end
+
+        function turbID = get_turbineID(obj)
+            turbID = obj.turbineName;
+        end
+
+        function obj = set_optipitch(obj, optipitch)
+            obj.optipitch = optipitch;
+        end
+
     end
 end
 

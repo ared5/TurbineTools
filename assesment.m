@@ -1,4 +1,4 @@
-classdef assesment < Turbine
+classdef assesment < Turbine 
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
 
@@ -11,24 +11,42 @@ classdef assesment < Turbine
             %UNTITLED Construct an instance of this class
             %   Detailed explanation goes here
             arguments
-                turbineName
-                powerDesign
-                rotorSpeedDesign
-                optipitch
-
+                turbineName (1, :) char {mustBeTextScalar} = 'NoName'     
+                powerDesign (1, :) double {mustBeNumeric} = 0
+                rotorSpeedDesign (1, :) double {mustBeNumeric} = 0
+                optipitch (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]                 
             end
             obj = obj@Turbine(turbineName, powerDesign, rotorSpeedDesign, optipitch);
         end
 
-        function plot_optipitch(obj)
+        function plot_optipitch(obj, optipit, turbineID)
+            arguments
+                obj
+                optipit (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]
+                turbineID (1, :) char {mustBeTextScalar} = 'NoName'
+            end
+            
             figure
-            plot(obj.optipitch(1,:), obj.optipitch(2,:), '-ob', LineWidth=3);
+            plot(optipit(1,:), optipit(2,:), '-ob', LineWidth=3);
             legend('Optipitch');
             xlabel('Power(kW)');
             ylabel('Pitch angle (deg)');
-            title(['Optipitch ', obj.turbineName])
+            title(['Optipitch ', turbineID])
+        end
 
+        function plot_LPFilter(obj)
+            figure
+            bode(obj.LPFilter)
+        end
 
+        function plot_HPFilter(obj)
+            figure
+            bode(obj.HPFilter)
+        end
+
+        function plot_StopBand_Filter(obj)
+            figure
+            bode(obj.StopBandFilter)
         end
 
     end
