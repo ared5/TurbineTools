@@ -7,17 +7,17 @@ classdef assesment < Turbine
     end
 
     methods
-        function obj = assesment(turbineName, powerDesign, rotorSpeedDesign, optipitch)
-            %UNTITLED Construct an instance of this class
-            %   Detailed explanation goes here
-            arguments
-                turbineName (1, :) char {mustBeTextScalar} = 'NoName'     
-                powerDesign (1, :) double {mustBeNumeric} = 0
-                rotorSpeedDesign (1, :) double {mustBeNumeric} = 0
-                optipitch (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]                 
-            end
-            obj = obj@Turbine(turbineName, powerDesign, rotorSpeedDesign, optipitch);
-        end
+        % function obj = assesment(turbineName, powerDesign, rotorSpeedDesign, optipitch)
+        %     %UNTITLED Construct an instance of this class
+        %     %   Detailed explanation goes here
+        %     arguments
+        %         turbineName (1, :) char {mustBeTextScalar} = 'NoName'     
+        %         powerDesign (1, :) double {mustBeNumeric} = 0
+        %         rotorSpeedDesign (1, :) double {mustBeNumeric} = 0
+        %         optipitch (2, 5)  = [0 0 0 0 0; 0 0 0 0 0]                 
+        %     end
+        %     obj = obj@Turbine(turbineName, powerDesign, rotorSpeedDesign, optipitch);
+        % end
 
         function plot_optipitch(obj, optipit, turbineID)
             arguments
@@ -34,20 +34,23 @@ classdef assesment < Turbine
             title(['Optipitch ', turbineID])
         end
 
-        function plot_LPFilter(obj)
-            figure
-            bode(obj.LPFilter)
-        end
+        function plot_SPC(obj, SPC_curve, turbineID)
+            arguments
+                obj
+                SPC_curve (2, 6)  = [0 0 0 0 0 0; 0 0 0 0 0 0]
+                turbineID (1, :) char {mustBeTextScalar} = 'NoName'
+            end
 
-        function plot_HPFilter(obj)
+            % AQUI AÑADIR QUE INTERPOLE ENTRE LOS PUNTOS DE FORMA
+            % CUADRATICA
+            
             figure
-            bode(obj.HPFilter)
-        end
-
-        function plot_StopBand_Filter(obj)
-            figure
-            bode(obj.StopBandFilter)
-        end
+            plot(SPC_curve(1, :), SPC_curve(2, :), '-ob', LineWidth=3);
+            legend('SPC curve');
+            xlabel('RotorSpeed (rpm)');
+            ylabel('Power(kW)');
+            title(['SPC ', turbineID])
+        end        
 
     end
 end
