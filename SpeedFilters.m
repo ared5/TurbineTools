@@ -1,4 +1,4 @@
-classdef SpeedFilters < Turbine & assesment
+classdef SpeedFilters < Turbine
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -48,6 +48,21 @@ classdef SpeedFilters < Turbine & assesment
             end
             s = tf('s');
             obj.StopBandFilter = 1;
+        end
+
+        function plot_LPFilter(obj)
+            figure
+            bode(obj.LPFilter)
+        end
+
+        function plot_HPFilter(obj)
+            figure
+            bode(obj.HPFilter)
+        end
+
+        function plot_StopBand_Filter(obj)
+            figure
+            bode(obj.StopBandFilter)
         end
         
     end

@@ -34,20 +34,7 @@ classdef assesment < Turbine
             title(['Optipitch ', turbineID])
         end
 
-        function plot_LPFilter(obj)
-            figure
-            bode(obj.LPFilter)
-        end
-
-        function plot_HPFilter(obj)
-            figure
-            bode(obj.HPFilter)
-        end
-
-        function plot_StopBand_Filter(obj)
-            figure
-            bode(obj.StopBandFilter)
-        end
+        
 
     end
 end
